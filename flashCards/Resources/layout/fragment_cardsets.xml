@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/cardSet_dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView 
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1"
+            android:onClick=""
+            android:layout_width="@dimen/design_fab_size_mini"
+            android:layout_height="@dimen/design_fab_size_mini"
+            android:layout_gravity="end|bottom"
+            android:visibility="invisible"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="184dp"
+            android:layout_alignParentRight = "true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/outline_mode_24"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="@dimen/design_fab_size_mini"
+            android:layout_height="@dimen/design_fab_size_mini"
+            android:layout_gravity="end|bottom"
+            android:visibility="invisible"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="132dp"
+            android:layout_alignParentRight = "true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/outline_file_upload_24"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:onClick=""
+            android:layout_width="@dimen/design_fab_size_normal"
+            android:layout_height="@dimen/design_fab_size_normal"
+            android:layout_gravity="end|bottom"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="64dp"
+            android:layout_alignParentRight = "true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/outline_add_24"/>
+
+</RelativeLayout>
