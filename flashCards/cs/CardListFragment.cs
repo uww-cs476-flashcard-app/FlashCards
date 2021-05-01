@@ -41,9 +41,7 @@ namespace flashCards.cs
             {
                 //switch to cardeditor fragment
                 AndroidX.Fragment.App.Fragment cardEditorFrag = new CardEditorFragment();
-                Bundle bundle = new Bundle();
-                bundle.PutString("cardsetPath", cardsetPath);
-                bundle.PutInt("lineNum", e.Position);
+                Bundle bundle = SetCardBundle(cardsetPath, flashCards[e.Position].Question, flashCards[e.Position].Answer, e.Position);
                 cardEditorFrag.Arguments = bundle;
                 Activity.SupportFragmentManager.BeginTransaction().Replace(Resource.Id.fragment_container, cardEditorFrag).AddToBackStack(null).Commit();
             };
@@ -52,8 +50,7 @@ namespace flashCards.cs
             {
                 //switch to cardeditor fragment
                 AndroidX.Fragment.App.Fragment cardEditorFrag = new CardEditorFragment();
-                Bundle bundle = new Bundle();
-                bundle.PutString("cardsetPath", cardsetPath);
+                Bundle bundle = SetCardBundle(cardsetPath, "", "", -1);
                 cardEditorFrag.Arguments = bundle;
                 Activity.SupportFragmentManager.BeginTransaction().Replace(Resource.Id.fragment_container, cardEditorFrag).AddToBackStack(null).Commit();
             };
@@ -76,6 +73,19 @@ namespace flashCards.cs
             ArrayAdapter adapter = new ArrayAdapter<string>(view.Context, Resource.Layout.activity_listview, questions);
             cardsList.Adapter = adapter;
         }
+
+        Bundle SetCardBundle(string path, string question, string answer, int position)
+        {
+            Bundle bundle = new Bundle();
+            bundle.PutString("cardsetPath", path);
+            bundle.PutString("questionText", question);
+            bundle.PutString("answerText", answer);
+            bundle.PutInt("lineNum", position);
+
+            return bundle;
+        }
+
+        
     }
 
     public struct FlashCard

@@ -19,6 +19,7 @@ namespace flashCards.cs
         EditText questionEditText;
         EditText answerEditText;
         Button saveButton;
+        bool newCard;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,11 +33,22 @@ namespace flashCards.cs
             view =  inflater.Inflate(Resource.Layout.fragment_card_editor, container, false);
             questionEditText = view.FindViewById<EditText>(Resource.Id.editText1);
             answerEditText = view.FindViewById<EditText>(Resource.Id.editText2);
+            questionEditText.Text = Arguments.GetString("questionText");
+            answerEditText.Text = Arguments.GetString("answerText");
+            newCard = Arguments.GetInt("lineNum") == -1; //is this a new card or not
+
             saveButton = view.FindViewById<Button>(Resource.Id.button1);
             saveButton.Click += (sender, e) =>
             {
                 //use CSVReader to write edited question and answer to file
-                CSVReader.CSVWrite(questionEditText.Text, answerEditText.Text, Arguments.GetString("cardsetPath"));
+                if (newCard)
+                {
+                    CSVReader.CSVWrite(questionEditText.Text, answerEditText.Text, Arguments.GetString("cardsetPath"));
+                }
+                else
+                {
+                    //update line in csv with new text
+                }
 
                 //return to cardlist fragment
                 Activity.SupportFragmentManager.PopBackStackImmediate();
