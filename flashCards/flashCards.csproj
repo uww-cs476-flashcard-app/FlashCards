@@ -61,7 +61,11 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cs\CardEditorFragment.cs" />
+    <Compile Include="cs\CardListFragment.cs" />
+    <Compile Include="cs\CardsetEditorActivity.cs" />
     <Compile Include="cs\CardSetsFragment.cs" />
+    <Compile Include="cs\CSVReader.cs" />
     <Compile Include="cs\HomeFragment.cs" />
     <Compile Include="cs\SettingsFragment.cs" />
     <Compile Include="MainActivity.cs" />
@@ -152,6 +156,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\outline_add_24.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_cardset_editor.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_cardlist.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_card_editor.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
