@@ -22,10 +22,11 @@ namespace flashCards.cs
         FloatingActionButton createSetButton;
         ListView cardSetsView;
 
-        List<string> allSets = new List<string>() { "1", "2", "3" };
+        List<string> allSets = new List<string>();
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             CARDSETS_DIRECTORY = this.Context.GetExternalFilesDir(null) + "/Cardsets";
+            Console.WriteLine(CARDSETS_DIRECTORY);
             LoadAllCardSets();
             view = inflater.Inflate(Resource.Layout.fragment_cardsets, container, false);
             createSetButton = view.FindViewById<FloatingActionButton>(Resource.Id.fab);
