@@ -9,6 +9,7 @@ using Google.Android.Material.BottomNavigation;
 using Google.Android.Material.FloatingActionButton;
 using AndroidX.Fragment.App;
 using Acr.UserDialogs;
+using Plugin.GoogleClient;
 
 namespace flashCards
 {
@@ -23,6 +24,8 @@ namespace flashCards
             SetContentView(Resource.Layout.activity_main);
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
+            GoogleClientManager.Initialize(this);
+            CrossGoogleClient.Current.LoginAsync();
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -48,6 +51,11 @@ namespace flashCards
             }
             this.SupportFragmentManager.BeginTransaction().Replace(Resource.Id.fragment_container, selectedFragment).Commit();
             return true;
+        }
+        protected override void OnActivityResult(int requestCode, Result resultCode, Android.Content.Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            GoogleClientManager.OnAuthCompleted(requestCode, resultCode, data);
         }
     }
 }
