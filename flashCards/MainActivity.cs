@@ -15,7 +15,10 @@ namespace flashCards
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
-    {   
+    {
+        internal static readonly int NOTIFICATION_ID = 1000;
+        internal static readonly string CHANNEL_ID = "location_notification";
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,6 +29,7 @@ namespace flashCards
             navigation.SetOnNavigationItemSelectedListener(this);
             GoogleClientManager.Initialize(this);
             CrossGoogleClient.Current.LoginAsync();
+            CreateNotificationChannel();
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -56,6 +60,27 @@ namespace flashCards
         {
             base.OnActivityResult(requestCode, resultCode, data);
             GoogleClientManager.OnAuthCompleted(requestCode, resultCode, data);
+        }
+
+        void CreateNotificationChannel()
+        {
+            if (Build.VERSION.SdkInt < BuildVersionCodes.O)
+            {
+                // Notification channels are new in API 26 (and not a part of the
+                // support library). There is no need to create a notification
+                // channel on older versions of Android.
+                return;
+            }
+
+            var name = Resources.GetString(Resource.String.channel_name);
+            var description = GetString(Resource.String.channel_description);
+            var channel = new NotificationChannel(CHANNEL_ID, name, NotificationImportance.Default)
+            {
+                Description = description
+            };
+
+            var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+            notificationManager.CreateNotificationChannel(channel);
         }
     }
 }
