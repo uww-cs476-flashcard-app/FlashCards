@@ -66,6 +66,7 @@
     <Compile Include="cs\CardsetEditorActivity.cs" />
     <Compile Include="cs\CardSetsFragment.cs" />
     <Compile Include="cs\CSVReader.cs" />
+    <Compile Include="cs\ExpandableListAdapter.cs" />
     <Compile Include="cs\HomeFragment.cs" />
     <Compile Include="cs\SettingsFragment.cs" />
     <Compile Include="MainActivity.cs" />
@@ -169,6 +170,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_card_editor.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\list_group.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\list_item.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
