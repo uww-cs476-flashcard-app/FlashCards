@@ -45,12 +45,13 @@ namespace flashCards.cs
                     try
                     {
                         FileStream fs = File.Create(CARDSETS_DIRECTORY + "/" + result.Text + ".CSV");
+                        fs.Close();
                     }
                     catch(Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
-                    allSets.Add(result.Text);
+                    LoadAllCardSets();
                     ShowCardSets();
                 }
             };

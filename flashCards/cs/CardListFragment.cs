@@ -17,7 +17,6 @@ namespace flashCards.cs
     public class CardListFragment : AndroidX.Fragment.App.Fragment
     {
         View view;
-        ListView cardsList;
         ExpandableListView cardList;
         List<FlashCard> flashCards;
         FloatingActionButton newCardButton;
@@ -38,17 +37,6 @@ namespace flashCards.cs
             cardsetPath = Arguments.GetString("cardsetPath");
             LoadAllCards();
             ShowAllCards();
-
-            
-
-            /*cardsList.ItemClick += (sender, e) =>
-            {
-                //switch to cardeditor fragment
-                AndroidX.Fragment.App.Fragment cardEditorFrag = new CardEditorFragment();
-                Bundle bundle = SetCardBundle(cardsetPath, flashCards[e.Position].Question, flashCards[e.Position].Answer, e.Position);
-                cardEditorFrag.Arguments = bundle;
-                Activity.SupportFragmentManager.BeginTransaction().Replace(Resource.Id.fragment_container, cardEditorFrag).AddToBackStack(null).Commit();
-            };*/
 
             newCardButton.Click += (sender, e) =>
             {
