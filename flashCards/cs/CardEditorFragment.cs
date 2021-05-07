@@ -19,7 +19,8 @@ namespace flashCards.cs
         EditText questionEditText;
         EditText answerEditText;
         Button saveButton;
-        bool newCard;
+        bool newCard = true;
+        string cardSetPath;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,7 +36,8 @@ namespace flashCards.cs
             answerEditText = view.FindViewById<EditText>(Resource.Id.editText2);
             questionEditText.Text = Arguments.GetString("questionText");
             answerEditText.Text = Arguments.GetString("answerText");
-            newCard = Arguments.GetInt("lineNum") == -1; //is this a new card or not
+            //newCard = Arguments.GetInt("lineNum") == -1; //is this a new card or not
+            cardSetPath = Arguments.GetString("cardsetPath");
 
             saveButton = view.FindViewById<Button>(Resource.Id.button1);
             saveButton.Click += (sender, e) =>
@@ -43,11 +45,12 @@ namespace flashCards.cs
                 //use CSVReader to write edited question and answer to file
                 if (newCard)
                 {
-                    CSVReader.CSVWrite(questionEditText.Text, answerEditText.Text, Arguments.GetString("cardsetPath"));
+                    CSVReader.CSVWrite(questionEditText.Text, answerEditText.Text, cardSetPath);
                 }
                 else
                 {
                     //update line in csv with new text
+                    //CSVReader.CSVWrite(questionEditText.Text, answerEditText.Text, cardSetPath, Arguments.GetInt("lineNum"));
                 }
 
                 //return to cardlist fragment

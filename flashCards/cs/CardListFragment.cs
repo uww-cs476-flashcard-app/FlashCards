@@ -18,6 +18,7 @@ namespace flashCards.cs
     {
         View view;
         ListView cardsList;
+        ExpandableListView cardList;
         List<FlashCard> flashCards;
         FloatingActionButton newCardButton;
         string cardsetPath;
@@ -31,20 +32,23 @@ namespace flashCards.cs
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = inflater.Inflate(Resource.Layout.fragment_cardlist, container, false);
-            cardsList = view.FindViewById<ListView>(Resource.Id.listView1);
+            //cardsList = view.FindViewById<ListView>(Resource.Id.listView1);
+            cardList = view.FindViewById<ExpandableListView>(Resource.Id.expandableListView);
             newCardButton = view.FindViewById<FloatingActionButton>(Resource.Id.fab);
             cardsetPath = Arguments.GetString("cardsetPath");
             LoadAllCards();
             ShowAllCards();
 
-            cardsList.ItemClick += (sender, e) =>
+            
+
+            /*cardsList.ItemClick += (sender, e) =>
             {
                 //switch to cardeditor fragment
                 AndroidX.Fragment.App.Fragment cardEditorFrag = new CardEditorFragment();
                 Bundle bundle = SetCardBundle(cardsetPath, flashCards[e.Position].Question, flashCards[e.Position].Answer, e.Position);
                 cardEditorFrag.Arguments = bundle;
                 Activity.SupportFragmentManager.BeginTransaction().Replace(Resource.Id.fragment_container, cardEditorFrag).AddToBackStack(null).Commit();
-            };
+            };*/
 
             newCardButton.Click += (sender, e) =>
             {
@@ -62,16 +66,25 @@ namespace flashCards.cs
         {
             //use csv reader to load cards into flashcards list
             flashCards = CSVReader.CSVRead(cardsetPath);
-            Console.WriteLine(cardsetPath);
         }
 
         void ShowAllCards()
         {
             //display questions in listview
-            string[] questions = new string[flashCards.Count];
+            /*string[] questions = new string[flashCards.Count];
             for(int i = 0; i < flashCards.Count; i++) { questions[i] = flashCards[i].Question; }
             ArrayAdapter adapter = new ArrayAdapter<string>(view.Context, Resource.Layout.activity_listview, questions);
-            cardsList.Adapter = adapter;
+            cardsList.Adapter = adapter;*/
+
+            Dictionary<string, List<string>> dict = new Dictionary<string, List<string>>();
+            List<string> lstKeys;
+            for (int i = 0; i < flashCards.Count; i++)
+            {
+                List<string> answer = new List<string>() { flashCards[i].Answer };
+                dict.Add(flashCards[i].Question, answer);
+            }
+            lstKeys = new List<string>(dict.Keys);
+            cardList.SetAdapter(new ExpandableListAdapter(Activity, dict));
         }
 
         Bundle SetCardBundle(string path, string question, string answer, int position)
