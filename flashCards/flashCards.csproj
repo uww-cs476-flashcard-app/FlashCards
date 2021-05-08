@@ -69,6 +69,7 @@
     <Compile Include="cs\ExpandableListAdapter.cs" />
     <Compile Include="cs\HomeFragment.cs" />
     <Compile Include="cs\SettingsFragment.cs" />
+    <Compile Include="cs\TimePickerFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +179,11 @@
     <AndroidResource Include="Resources\layout\list_item.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionflashCardsHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">
