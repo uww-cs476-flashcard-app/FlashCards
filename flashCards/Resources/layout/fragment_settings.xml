@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="PICK START TIME"
+        android:layout_marginHorizontal="80dp"
+        android:textSize="20dp" />
+     <TextView
+        android:id="@+id/start_time_display"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:text="Picked time will be displayed here"
+        android:textSize="24dp" />
+
+    <Button
+        android:id="@+id/end_button"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="PICK END TIME"
+        android:layout_marginHorizontal="80dp"
+        android:textSize="20dp" />
 
     <TextView
+        android:id="@+id/end_time_display"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_settings"/>
+        android:paddingTop="10dp"
+        android:text="Picked time will be displayed here"
+        android:textSize="24dp" />
+
+     <Button
+        android:id="@+id/test_button" 
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="TEST NOTIFICATION"
+        android:layout_marginHorizontal="80dp"
+        android:textSize="20dp" />
 </LinearLayout>

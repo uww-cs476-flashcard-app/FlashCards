@@ -19,7 +19,7 @@ namespace flashCards.cs
         {
             View view = inflater.Inflate(Resource.Layout.fragment_home, container, false);
 
-            ShowNotification();
+            //ShowNotification();
 
             return view;
         }
