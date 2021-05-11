@@ -41,16 +41,7 @@ namespace flashCards.cs
                 });
                 if (result.Ok && !string.IsNullOrWhiteSpace(result.Text))
                 {
-                    //Create new .CSV file in cardsets directory
-                    try
-                    {
-                        FileStream fs = File.Create(CARDSETS_DIRECTORY + "/" + result.Text + ".CSV");
-                        fs.Close();
-                    }
-                    catch(Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                    CreateNewSet(result.Text);
                     LoadAllCardSets();
                     ShowCardSets();
                 }
@@ -86,6 +77,28 @@ namespace flashCards.cs
         {
             ArrayAdapter adapter = new ArrayAdapter<string>(view.Context, Resource.Layout.activity_listview, allSets);
             cardSetsView.Adapter = adapter;
+        }
+
+        void CreateNewSet(string name)
+        {
+            //Create new .CSV file in cardsets directory
+            try
+            {
+                string path = CARDSETS_DIRECTORY + "/" + name;
+                string tempPath = path + ".csv";
+                FileStream fs;
+                int index = 0;
+                while (File.Exists(tempPath))
+                {
+                    tempPath = path + "(" + index++ + ").csv";
+                }
+                fs = File.Create(tempPath);
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
